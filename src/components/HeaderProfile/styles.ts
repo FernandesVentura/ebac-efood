@@ -13,6 +13,8 @@ export const Image = styled.div`
     font-weight: bold;
     justify-content: space-between;
     padding-top: 64px;
+    align-items: center;
+    width: 100%;
   }
 `
 
