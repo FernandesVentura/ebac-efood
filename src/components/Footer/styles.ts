@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colors } from "../../styles";
 
 export const MainFooter = styled.footer`
-    wisth: 100%;
+    width: 100%;
     background-color: ${colors.footerColor};
     display: block;
     height: 304px;
@@ -11,6 +11,12 @@ export const MainFooter = styled.footer`
     .logo {
         padding-top: 40px;
         margin-bottom: 32px;
+
+        
+    }
+
+    span img{
+        cursor: pointer;
     }
 
     .faceLogo{

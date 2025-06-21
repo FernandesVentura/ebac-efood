@@ -1,4 +1,4 @@
-import { Card, Title, Description, ButtonAdd } from "./styles"
+import { Card, Title, Description, AddButton } from "./styles"
 
 type Props = {
     title: string;
@@ -18,7 +18,7 @@ const ProductProfile = ({
         <div className="card-div">
             <Title>{title}</Title>
             <Description>{description}</Description>
-            <ButtonAdd>{cart}</ButtonAdd>
+            <AddButton>{cart}</AddButton>
         </div>
 
     </Card>

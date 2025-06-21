@@ -43,12 +43,13 @@ export const Infos = styled.div`
 
 `
 
-export const ButtonAdd = styled.button`
+export const AddButton = styled.button`
     background color: ${colors.mainColor};
     color: ${colors.secondaryColor};
     padding: 4px;
     width: 100%;
     border: none;
     font-weight: bold;
+    cursor: pointer;
 
 `

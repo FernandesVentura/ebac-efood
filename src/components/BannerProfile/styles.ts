@@ -38,7 +38,7 @@ export const Title = styled.h3`
 export const Text = styled.p`
     font-size: 32px;
     margin-top: 24px;
-    font-weight: bold;
+    font-weight: 900;
     color: ${colors.mainColor};
   
 `

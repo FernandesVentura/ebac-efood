@@ -19,7 +19,7 @@ export const Image = styled.div`
 `
 
 
-export const Text = styled.h2`
+export const Text = styled.p`
   color: ${colors.secondaryColor};
   font-size: 18px;
 
