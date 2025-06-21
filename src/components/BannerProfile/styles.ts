@@ -29,7 +29,7 @@ export const Image = styled.div`
     }
 `
 export const Title = styled.h3`
-    font-size: 36px;
+    font-size: 32px;
     font-weight: 100;
     color: ${colors.mainColor};
     padding-top: 24px;

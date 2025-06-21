@@ -6,7 +6,7 @@ import { Props } from ".";
 export const TagContainer = styled.button<Props>`
     background-color: ${colors.secondaryColor};
     color: ${colors.mainColor};
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     padding: 4px 6px;
     display: inline-block;
