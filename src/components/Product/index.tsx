@@ -1,4 +1,5 @@
-import Tag from "../Tag"
+import Tag  from "../Tag"
+import TagInfo from "../TagInfo";
 
 
 import { Card, Title, Description, TitleDiv, Infos } from "./styles"
@@ -27,7 +28,7 @@ const Product = ({
         <div className="card-div">
             <Infos>
                 {infos.map((info) => (
-                    <Tag key={info}>{info}</Tag>
+                    <TagInfo key={info}>{info}</TagInfo>
                 ))}
             </Infos>
             <TitleDiv>

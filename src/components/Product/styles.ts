@@ -54,7 +54,7 @@ export const Description = styled.p`
 
 export const Infos = styled.div`
     position: absolute;
+    display: flex;
     top: 16px;
     right: 16px;
-
 `

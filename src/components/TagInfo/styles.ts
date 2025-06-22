@@ -9,6 +9,7 @@ export const TagContainer = styled.button<Props>`
     font-size: 12px;
     font-weight: bold;
     padding: 4px 6px;
+    display: flex;
+    margin-left: 8px;
     border: none;
-    cursor: pointer;
 `
