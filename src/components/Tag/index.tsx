@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom"
 import { TagContainer } from "./styles"
+import { ReactNode } from "react"
 
 export type Props = {
-    children: string
+    children: ReactNode
+    to: string
 }
 
-const Tag = ({children}: Props) => (
-    <Link to='/page1'>
-        <TagContainer>
+const Tag = ({children, to}: Props) => (
+        <TagContainer to={to}>
             {children}
         </TagContainer>
-    </Link>
 )
 
 export default Tag

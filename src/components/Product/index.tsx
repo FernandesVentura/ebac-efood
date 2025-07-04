@@ -1,48 +1,48 @@
-import Tag  from "../Tag"
-import TagInfo from "../TagInfo";
-
-
+import Tag from "../Tag"
+import TagInfo from "../TagInfo"
+import favoriteImg from '../../assets/images/favorite.png'
 import { Card, Title, Description, TitleDiv, Infos } from "./styles"
+import { Link } from "react-router-dom"
 
 type Props = {
-    title: string;
-    rating: string;
-    description: string;
-    infos: string[];
-    image: string;
-    learnMore: string;
-    favorite: string
+    id: number
+    titulo: string
+    avaliacao: number
+    descricao: string
+    tipo: string[]
+    capa: string
 }
 
 const Product = ({ 
-    title, 
-    rating, 
-    description, 
-    infos, 
-    image, 
-    learnMore, 
-    favorite
-}: Props) => (
-    <Card>
-        <img src={image} alt={title} />
-        <div className="card-div">
-            <Infos>
-                {infos.map((info) => (
-                    <TagInfo key={info}>{info}</TagInfo>
-                ))}
-            </Infos>
-            <TitleDiv>
-                <Title>{title}</Title>
-                <div>
-                    <span>{rating}</span>
-                    <img src={favorite} alt="Icone de favorito" />
-                </div>
-            </TitleDiv>
-            <Description>{description}</Description>
-            <Tag>{learnMore}</Tag>
-        </div>
+    id,
+    titulo, 
+    avaliacao, 
+    descricao, 
+    tipo, 
+    capa
+}: Props) => {
 
-    </Card>
-)
+    return (
+        <Card>
+            <img src={capa} alt={titulo} />
+            <div className="card-div">
+                <Infos>
+                    {tipo.map((info, index) => (
+                        <TagInfo key={index}>{info}</TagInfo>
+                    ))}
+                </Infos>
+                <TitleDiv>
+                    <Title>{titulo}</Title>
+                    <div>
+                        <span>{avaliacao}</span>
+                        <img src={favoriteImg} alt="Ícone de favorito" />
+                    </div>
+                </TitleDiv>
+                <Description>{descricao}</Description>
+                <Tag to={`/cardapio/${id}`}> Saiba mais</Tag>
+            </div>
+        </Card>
+    )
+}
 
 export default Product

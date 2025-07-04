@@ -1,8 +1,8 @@
-// import { Link } from "react-router-dom"
+import { ReactNode } from "react"
 import { TagContainer } from "./styles"
 
 export type Props = {
-    children: string
+    children: ReactNode
 }
 
 const TagInfo = ({children}: Props) => (

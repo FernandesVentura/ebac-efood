@@ -10,8 +10,11 @@ export const Card = styled.div`
     position: relative;
 
     img{
-        max-width: 304px; 
+        width: 304px;
+        height: 217px;
         margin: 8px;
+        object-fit: cover;    
+        display: block;
     }
 
     .card-div{
@@ -43,7 +46,7 @@ export const Infos = styled.div`
 
 `
 
-export const AddButton = styled.button`
+export const Details = styled.button`
     background color: ${colors.mainColor};
     color: ${colors.secondaryColor};
     padding: 4px;

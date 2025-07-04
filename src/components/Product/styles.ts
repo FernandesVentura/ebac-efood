@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import { colors } from "../../styles";
 
@@ -11,8 +10,11 @@ export const Card = styled.div`
     margin-bottom: 48px;
     position: relative;
 
-    img{
-        width: 100%
+    > img{
+        width: 100%;
+        max-height: 217px;
+        object-fit: cover;    
+        display: block;
     }
 
     .card-div{

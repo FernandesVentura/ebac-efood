@@ -1,14 +1,19 @@
+import { Menu } from '../../pages/Home'
 import { Image, Title, Text } from './styles'
 
-import dolce from '../../assets/images/comida2.png'
+type Props = {
+    restaurant: Menu
+}
 
-const BannerProfile = () => (
-    <Image style={{backgroundImage: `url(${dolce})`}}>
-        <div className="container">
-            <Title>Italiana</Title>
-            <Text>La Dolce Vita Trattoria</Text>
-        </div>
-    </Image>
-)
+const BannerProfile = ({ restaurant }: Props) => {
+    return (
+        <Image style={{ backgroundImage: `url(${restaurant.capa})` }}>
+            <div className="container">
+                <Title>{restaurant.tipo}</Title>
+                <Text>{restaurant.titulo}</Text>
+            </div>
+        </Image>
+    )
+}
 
 export default BannerProfile
