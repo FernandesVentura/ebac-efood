@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../styles";
+import { breakpoints, colors } from "../../styles";
 
 export const Card = styled.div`
     background-color: ${colors.secondaryColor};
@@ -7,18 +7,25 @@ export const Card = styled.div`
     max-width: 320px;
     width: 100%;
     margin-bottom: 48px;
-    position: relative;
+    position: relative; 
 
-    img{
-        width: 304px;
-        height: 217px;
-        margin: 8px;
-        object-fit: cover;    
-        display: block;
+    img {
+        height: 167px;
+        width: 100%;
+        padding: 8px;
+        object-fit: cover;
     }
 
     .card-div{
         margin: 8px;
+    }
+
+    @media (max-width: ${breakpoints.desktop}) {
+        margin: 0 auto 48px;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin: 0 auto 48px;
     }
 `
 
@@ -47,7 +54,7 @@ export const Infos = styled.div`
 `
 
 export const Details = styled.button`
-    background color: ${colors.mainColor};
+    background-color: ${colors.footerColor};
     color: ${colors.secondaryColor};
     padding: 4px;
     width: 100%;

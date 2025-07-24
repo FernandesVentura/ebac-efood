@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../styles"
+import { breakpoints, colors } from "../../styles"
 
 export const Overlay = styled.div`
     position: absolute;
@@ -16,7 +16,7 @@ export const Modal = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    display: none;;
+    display: none;
     align-items: center;
     justify-content: center;
 
@@ -43,6 +43,17 @@ background-color: ${colors.secondaryColor};
         margin: 32px;
         object-fit: cover;    
         display: block;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        display: block;
+        width: 80%;
+
+        >img {
+            width: 100%;
+            max-height: 200px;
+            margin: 0px;
+        }
     }
 `
 
@@ -74,13 +85,39 @@ export const ModalInfo = styled.div`
         margin-right: 24px;
         line-height: 22px;
     }
+
+    @media (max-width: ${breakpoints.desktop}) {
+        margin-left: 16px;
+        position: relative;
+
+        h4 {
+            margin-top: 0;
+        }
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin-left: 16px;
+        position: relative;
+
+        h4 {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
 `
 
 export const AddButton = styled.button`
-    background color: ${colors.mainColor};
+    background-color: ${colors.footerColor};
     color: ${colors.secondaryColor};
     padding: 4px;
     border: none;
     font-weight: bold;
     cursor: pointer;
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin-bottom: 16px;
+    }
 `

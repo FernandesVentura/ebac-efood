@@ -2,7 +2,7 @@ import Tag from "../Tag"
 import TagInfo from "../TagInfo"
 import favoriteImg from '../../assets/images/favorite.png'
 import { Card, Title, Description, TitleDiv, Infos } from "./styles"
-import { Link } from "react-router-dom"
+import { colors } from "../../styles"
 
 type Props = {
     id: number
@@ -21,6 +21,14 @@ const Product = ({
     tipo, 
     capa
 }: Props) => {
+    const getDescricao = (descricao: string) => {
+        const maxLength = 230;
+        if (descricao.length > maxLength) {
+            return descricao.slice(0, maxLength) + '...'
+        }
+        return descricao
+    }
+
 
     return (
         <Card>
@@ -38,8 +46,8 @@ const Product = ({
                         <img src={favoriteImg} alt="Ícone de favorito" />
                     </div>
                 </TitleDiv>
-                <Description>{descricao}</Description>
-                <Tag to={`/cardapio/${id}`}> Saiba mais</Tag>
+                <Description>{getDescricao(descricao)}</Description>
+                <Tag to={`/cardapio/${id}`} backgroundColor={colors.secondaryColor}> Saiba mais</Tag>
             </div>
         </Card>
     )

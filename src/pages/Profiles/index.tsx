@@ -1,36 +1,28 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'  // para pegar id da URL
+import { useParams } from 'react-router-dom'
 
 import HeaderProfile from '../../components/HeaderProfile'
 import BannerProfile from '../../components/BannerProfile'
 import ProductsListProfile from '../../components/ProductsListProfile'
 import Footer from '../../components/Footer'
 
-import { Menu } from '../Home'
+import { useGetRestaurantsQuery } from '../../services/api'
 
 const Profiles = () => {
     const { id } = useParams<{ id: string }>()
-    const [restaurant, setRestaurant] = useState<Menu | null>(null)
-    const [loading, setLoading] = useState(true)
+    const { data: restaurants, isLoading, error } = useGetRestaurantsQuery()
 
-    useEffect(() => {
-        fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-        .then(res => res.json())
-        .then((data: Menu[]) => {
-            const found = data.find(r => r.id === Number(id))
-            setRestaurant(found || null)
-            setLoading(false)
-        })
-    }, [id])
+    if (isLoading) return <h3>Carregando...</h3>
+    if (error || !restaurants) return <h3>Erro ao carregar restaurantes</h3>
 
-    if (loading) return <h3>Carregando...</h3>
+    const restaurant = restaurants.find((r) => r.id === Number(id))
+
     if (!restaurant) return <h3>Restaurante não encontrado</h3>
 
     return (
         <>
             <HeaderProfile />
-            <BannerProfile restaurant={restaurant} />
-            <ProductsListProfile menusProfile={restaurant.cardapio} />
+            <BannerProfile />
+            <ProductsListProfile />
             <Footer />
         </>
     )

@@ -7,6 +7,11 @@ export const colors = {
   footerColor: '#FFEBD9'
 }
 
+export const breakpoints = {
+  desktop: '1024px',
+  tablet: '768px'
+}
+
 export const GlobalCss = createGlobalStyle`
   *{
     margin: 0;
@@ -24,6 +29,11 @@ export const GlobalCss = createGlobalStyle`
   .container {
     margin: 0 auto;
     max-width: 1024px;
-    width: 100%
+    width: 100%;
+    
+    @media (max-width: ${breakpoints.desktop}) {
+      max-width: 80%;
+    }
   }
+
 `

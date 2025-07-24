@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 
 export const Image = styled.div`
   height: 384px;
@@ -16,6 +16,9 @@ export const Text = styled.h2`
   color: ${colors.secondaryColor};
   font-size: 36px;
 
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 24px;
+  }
 `
 
 export const Logo = styled.img`

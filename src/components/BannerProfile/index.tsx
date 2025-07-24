@@ -1,11 +1,14 @@
-import { Menu } from '../../pages/Home'
+import { useParams } from 'react-router-dom'
 import { Image, Title, Text } from './styles'
+import { useGetRestaurantByIdQuery } from '../../services/api'
 
-type Props = {
-    restaurant: Menu
-}
+const BannerProfile = () => {
+    const { id } = useParams<{ id: string }>()
+    const {  data: restaurant, isLoading} = useGetRestaurantByIdQuery(Number(id))
 
-const BannerProfile = ({ restaurant }: Props) => {
+    if (isLoading) return <p>Carregando o banner...</p>
+    if(!restaurant) return <p>Erro ao carregar restaurante</p>
+
     return (
         <Image style={{ backgroundImage: `url(${restaurant.capa})` }}>
             <div className="container">

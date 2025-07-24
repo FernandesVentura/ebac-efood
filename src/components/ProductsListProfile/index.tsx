@@ -1,45 +1,52 @@
+import { useParams } from "react-router-dom"
+import { useState } from "react"
+
 import ProductProfile from "../ProductProfile"
 import { Container, List } from "./styles"
-import { useState } from "react"
 import ModalProfile from "../ModalProfile"
 import { Prato } from "../../pages/Home"
+import { useGetRestaurantByIdQuery } from "../../services/api"
 
-
-export type Props = {
-    menusProfile: Prato[]
-}
-
-const ProductsListProfile = ({ menusProfile }: Props) => {
+const ProductsListProfile = () => {
+    const { id } = useParams<{ id: string }>()
     const [modalOpen, setModalOpen] = useState(false)
     const [pratoSelecionado, setPratoSelecionado] = useState<Prato | null>(null)
+    
+    const {
+        data: restaurant,
+        isLoading,
+        error
+    } = useGetRestaurantByIdQuery(Number(id))
 
+    if (isLoading) return <p>Carregando pratos...</p>
+    if (error || !restaurant) return <p>Erro ao carregar restaurante</p>
 
     return (
         <>
             <Container>
                 <div className="container">
                     <List>
-                        {menusProfile.map((item) => (
-                            <ProductProfile 
+                        {restaurant.cardapio.map((item) => (
+                            <ProductProfile
                                 key={item.id}
-                                nome={item.nome}               
+                                nome={item.nome}
                                 descricao={item.descricao}
-                                foto={item.foto}                 
+                                foto={item.foto}
                                 onClick={() => {
-                                    setModalOpen(true)
-                                    setPratoSelecionado(item)
+                                setModalOpen(true)
+                                setPratoSelecionado(item)
                                 }}
                             />
                         ))}
                     </List>
                 </div>
             </Container>
-            <ModalProfile 
+            <ModalProfile
                 modalOpen={modalOpen}
                 pratoSelecionado={pratoSelecionado}
                 onClose={() => {
-                    setModalOpen(false)
-                    setPratoSelecionado(null)
+                setModalOpen(false)
+                setPratoSelecionado(null)
                 }}
             />
         </>

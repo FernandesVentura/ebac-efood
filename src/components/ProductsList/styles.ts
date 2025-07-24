@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { Props } from '.'
+import { breakpoints } from '../../styles'
 
-export const Container = styled.section<Omit<Props, 'menus' >>`
+export const Container = styled.section`
     margin-top: 80px;
 `
 
@@ -10,4 +10,8 @@ export const List = styled.ul`
     grid-template-columns: 1fr 1fr;
     column-gap: 80px;
     margin-bottom: 48px;
+
+    @media (max-width: ${breakpoints.tablet}) {
+        grid-template-columns: 1fr;
+    }
 `

@@ -1,6 +1,10 @@
+import { useDispatch } from 'react-redux'
+import { add, open } from '../../store/reducers/cart'
+
 import { Overlay, AddButton, ModalContent, ModalInfo, Modal } from "../ModalProfile/styles"
 import closeIMG from '../../assets/images/closeBTN.png'
 import { Prato } from "../../pages/Home";
+
 
 type Props = {
     modalOpen: boolean;
@@ -9,6 +13,8 @@ type Props = {
 }
 
 const ModalProfile = ({ modalOpen, pratoSelecionado, onClose }: Props) => {
+    const dispatch = useDispatch()
+
     if (!pratoSelecionado) return null
 
     const formataPreco = (price: number) => {
@@ -18,6 +24,14 @@ const ModalProfile = ({ modalOpen, pratoSelecionado, onClose }: Props) => {
         }).format(price)
     }
 
+
+    const handleAdd = () => {
+        if (pratoSelecionado) {
+            dispatch(add(pratoSelecionado))
+            dispatch(open())
+            onClose()
+        }
+    }
 
     return (
         <>
@@ -35,7 +49,7 @@ const ModalProfile = ({ modalOpen, pratoSelecionado, onClose }: Props) => {
                         <br /><br />
                         Serve de {pratoSelecionado.porcao}
                     </p>
-                    <AddButton>Adicionar ao carrinho - {formataPreco(pratoSelecionado.preco)}</AddButton>
+                    <AddButton onClick={handleAdd}>Adicionar ao carrinho - {formataPreco(pratoSelecionado.preco)}</AddButton>
                     </ModalInfo>
                 </ModalContent>
             </Modal>

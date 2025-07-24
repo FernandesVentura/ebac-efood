@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../styles";
+import { breakpoints, colors } from "../../styles";
 
 export const Card = styled.div`
     background-color: ${colors.white};
@@ -9,16 +9,21 @@ export const Card = styled.div`
     border: 2px solid ${colors.secondaryColor};
     margin-bottom: 48px;
     position: relative;
+    padding-bottom: 24px;
 
     > img{
         width: 100%;
-        max-height: 217px;
+        height: 217px;
         object-fit: cover;    
         display: block;
     }
 
     .card-div{
         margin: 8px;
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+        margin: 0 auto 48px;
     }
 `
 
@@ -60,3 +65,4 @@ export const Infos = styled.div`
     top: 16px;
     right: 16px;
 `
+
