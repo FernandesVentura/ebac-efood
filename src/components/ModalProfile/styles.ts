@@ -89,10 +89,6 @@ export const ModalInfo = styled.div`
     @media (max-width: ${breakpoints.desktop}) {
         margin-left: 16px;
         position: relative;
-
-        h4 {
-            margin-top: 0;
-        }
     }
 
     @media (max-width: ${breakpoints.tablet}) {
