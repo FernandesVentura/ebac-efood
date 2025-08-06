@@ -19,6 +19,8 @@ export const Text = styled.h2`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 24px;
   }
+
+  
 `
 
 export const Logo = styled.img`
