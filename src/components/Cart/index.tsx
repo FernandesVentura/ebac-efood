@@ -1,7 +1,7 @@
-// components/Cart/index.tsx
 import { useDispatch, useSelector } from "react-redux"
 import { RootReducer } from "../../store"
 import { close, remove } from '../../store/reducers/cart'
+import { open as openCheckout } from '../../store/reducers/checkout'
 import { Overlay, CartContainer, Sidebar, ListItem, TotalPrice } from './styles'
 import { Details as Button } from "../ProductProfile/styles"
 import lixeira from '../../assets/images/garbage.png'
@@ -12,6 +12,10 @@ const Cart = () => {
 
     const closeCart = () => dispatch(close())
     const handleRemove = (id: number) => dispatch(remove(id))
+    const handleContinueToCheckout = () => {
+        dispatch(openCheckout())
+        dispatch(close())
+    }
 
     const total = items.reduce((acc, item) => acc + item.preco, 0)
 
@@ -46,7 +50,7 @@ const Cart = () => {
                     <p>Valor total</p>
                     <p>{formataPreco(total)}</p>
                 </TotalPrice>
-                <Button type="button" title="Clique para continuar">
+                <Button type="button" title="Clique para continuar" onClick={handleContinueToCheckout}>
                     Continuar com a entrega
                 </Button>
             </Sidebar>
