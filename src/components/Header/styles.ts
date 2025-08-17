@@ -11,7 +11,6 @@ export const Image = styled.div`
   text-align: center;
 `
 
-
 export const Text = styled.h2`
   color: ${colors.secondaryColor};
   font-size: 36px;
@@ -19,8 +18,6 @@ export const Text = styled.h2`
   @media (max-width: ${breakpoints.tablet}) {
     font-size: 24px;
   }
-
-  
 `
 
 export const Logo = styled.img`

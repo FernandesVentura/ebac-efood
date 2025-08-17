@@ -1,24 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 type PaymentState = {
-    isOpen: boolean
+  isOpen: boolean
 }
 
 const initialState: PaymentState = {
-    isOpen: false
+  isOpen: false
 }
 
 const paymentSlice = createSlice({
-    name: 'payment',
-    initialState,
-    reducers: {
-        open: (state) => {
-            state.isOpen = true
-        },
-        close: (state) => {
-            state.isOpen = false
-        }
+  name: 'payment',
+  initialState,
+  reducers: {
+    open: (state) => {
+      state.isOpen = true
+    },
+    close: (state) => {
+      state.isOpen = false
     }
+  }
 })
 
 export const { open, close } = paymentSlice.actions

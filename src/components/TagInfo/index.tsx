@@ -1,16 +1,14 @@
-import { ReactNode } from "react"
-import { TagContainer } from "./styles"
+import { ReactNode } from 'react'
+import { TagContainer } from './styles'
 
 export type Props = {
-    children: ReactNode
+  children: ReactNode
 }
 
-const TagInfo = ({children}: Props) => (
-    <div >
-        <TagContainer>
-            {children}
-        </TagContainer>
-    </div>
+const TagInfo = ({ children }: Props) => (
+  <div>
+    <TagContainer>{children}</TagContainer>
+  </div>
 )
 
 export default TagInfo

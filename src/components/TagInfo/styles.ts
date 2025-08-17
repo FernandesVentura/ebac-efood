@@ -1,15 +1,15 @@
-import styled from "styled-components";
-import { colors } from "../../styles";
+import styled from 'styled-components'
+import { colors } from '../../styles'
 
-import { Props } from ".";
+import { Props } from '.'
 
 export const TagContainer = styled.button<Props>`
-    background-color: ${colors.secondaryColor};
-    color: ${colors.mainColor};
-    font-size: 12px;
-    font-weight: bold;
-    padding: 4px 6px;
-    display: flex;
-    margin-left: 8px;
-    border: none;
+  background-color: ${colors.secondaryColor};
+  color: ${colors.mainColor};
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 6px;
+  display: flex;
+  margin-left: 8px;
+  border: none;
 `

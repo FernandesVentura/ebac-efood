@@ -7,7 +7,9 @@ const Header = () => (
   <Image style={{ backgroundImage: `url(${backgroundIMG})` }}>
     <div className="container">
       <Logo src={logoIMG} alt="Logo EFOOD" />
-      <Text>Viva experiências gastronômicas <br /> no conforto da sua casa</Text>
+      <Text>
+        Viva experiências gastronômicas <br /> no conforto da sua casa
+      </Text>
     </div>
   </Image>
 )

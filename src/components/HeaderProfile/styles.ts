@@ -6,7 +6,6 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  
 
   .container {
     display: flex;
@@ -25,31 +24,29 @@ export const Image = styled.div`
   }
 `
 
-
 export const Text = styled.p`
   color: ${colors.secondaryColor};
   font-size: 18px;
 
   @media (max-width: ${breakpoints.tablet}) {
-      margin-bottom: 24px;
-    }
+    margin-bottom: 24px;
+  }
 `
 
 export const CartButton = styled.p`
   color: ${colors.secondaryColor};
   font-size: 18px;
   cursor: pointer;
-  
+
   @media (max-width: ${breakpoints.tablet}) {
-      margin-top: 24px;
-    }
+    margin-top: 24px;
+  }
 `
 
 export const Logo = styled.img`
   width: 128px;
 
   @media (max-width: ${breakpoints.tablet}) {
-      width: 120px;
-    }
-  
+    width: 120px;
+  }
 `
