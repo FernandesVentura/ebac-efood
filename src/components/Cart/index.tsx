@@ -28,34 +28,43 @@ const Cart = () => {
     <CartContainer className={isOpen ? 'is-open' : ''}>
       <Overlay onClick={closeCart} />
       <Sidebar>
-        <ul>
-          {items.map((item) => (
-            <ListItem key={item.id}>
-              <img className="img" src={item.foto} alt={item.nome} />
-              <div>
-                <h3>{item.nome}</h3>
-                <p>{formataPreco(item.preco)}</p>
-              </div>
-              <img
-                className="remove-button"
-                src={lixeira}
-                alt="Remover"
-                onClick={() => handleRemove(item.id)}
-              />
-            </ListItem>
-          ))}
-        </ul>
-        <TotalPrice>
-          <p>Valor total</p>
-          <p>{formataPreco(total)}</p>
-        </TotalPrice>
-        <Button
-          type="button"
-          title="Clique para continuar"
-          onClick={handleContinueToCheckout}
-        >
-          Continuar com a entrega
-        </Button>
+        {items.length > 0 ? (
+          <>
+            <ul>
+              {items.map((item) => (
+                <ListItem key={item.id}>
+                  <img className="img" src={item.foto} alt={item.nome} />
+                  <div>
+                    <h3>{item.nome}</h3>
+                    <p>{formataPreco(item.preco)}</p>
+                  </div>
+                  <img
+                    className="remove-button"
+                    src={lixeira}
+                    alt="Remover"
+                    onClick={() => handleRemove(item.id)}
+                  />
+                </ListItem>
+              ))}
+            </ul>
+            <TotalPrice>
+              <p>Valor total</p>
+              <p>{formataPreco(total)}</p>
+            </TotalPrice>
+            <Button
+              type="button"
+              title="Clique para continuar"
+              onClick={handleContinueToCheckout}
+            >
+              Continuar com a entrega
+            </Button>
+          </>
+        ) : (
+          <p className="empty-text">
+            Seu pedido está vazio, adicione pelo menos um produto para continuar
+            com a compra.
+          </p>
+        )}
       </Sidebar>
     </CartContainer>
   )

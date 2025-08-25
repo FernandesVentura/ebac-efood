@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 import { useFormikContext } from 'formik'
+import { IMaskInput } from 'react-imask'
 
 import { CheckoutContainer, InputLine, Overlay, Sidebar, Row } from './styles'
 
@@ -118,7 +119,7 @@ const CheckoutForm = () => {
                 <label htmlFor="zipCode">
                   CEP <span>(*)</span>
                 </label>
-                <input
+                <IMaskInput
                   id="zipCode"
                   type="text"
                   name="zipCode"
@@ -126,13 +127,14 @@ const CheckoutForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('zipCode') ? 'input-error' : ''}
+                  mask="00000-000"
                 />
               </InputLine>
               <InputLine>
                 <label htmlFor="number">
                   Número <span>(*)</span>
                 </label>
-                <input
+                <IMaskInput
                   id="number"
                   type="text"
                   name="number"
@@ -140,6 +142,7 @@ const CheckoutForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('number') ? 'input-error' : ''}
+                  mask="00 00000-0000"
                 />
               </InputLine>
             </Row>

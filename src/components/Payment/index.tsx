@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { useFormikContext } from 'formik'
+import { IMaskInput } from 'react-imask'
 
 import { Details as Button } from '../ProductProfile/styles'
 import { selectTotalPrice } from '../../store/reducers/cart'
@@ -59,7 +60,7 @@ const Payment = () => {
             <Row>
               <InputLine>
                 <label htmlFor="cardNumber">Número do cartao (*)</label>
-                <input
+                <IMaskInput
                   id="cardNumber"
                   type="text"
                   name="cardNumber"
@@ -67,11 +68,12 @@ const Payment = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('cardNumber') ? 'input-error' : ''}
+                  mask="0000-0000-0000-0000"
                 />
               </InputLine>
               <InputLine>
                 <label htmlFor="cvv">CVV (*)</label>
-                <input
+                <IMaskInput
                   id="cvv"
                   type="text"
                   name="cvv"
@@ -79,13 +81,14 @@ const Payment = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('cvv') ? 'input-error' : ''}
+                  mask="000"
                 />
               </InputLine>
             </Row>
             <Row>
               <InputLine>
                 <label htmlFor="expiresMonth">Mês de vencimento (*)</label>
-                <input
+                <IMaskInput
                   id="expiresMonth"
                   type="text"
                   name="expiresMonth"
@@ -93,11 +96,12 @@ const Payment = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('expiresMonth') ? 'input-error' : ''}
+                  mask="00"
                 />
               </InputLine>
               <InputLine>
                 <label htmlFor="expiresYear">Ano de vencimento (*)</label>
-                <input
+                <IMaskInput
                   id="expiresYear"
                   type="text"
                   name="expiresYear"
@@ -105,13 +109,14 @@ const Payment = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('expiresYear') ? 'input-error' : ''}
+                  mask="0000"
                 />
               </InputLine>
             </Row>
           </ul>
-          <button className="btn-button" type="submit">
+          <Button className="btn-button" type="submit">
             Finalizar o pagamento
-          </button>
+          </Button>
           <Button type="button" onClick={handleBackToCheckout}>
             Voltar para a edição de endereço
           </Button>

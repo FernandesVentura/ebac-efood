@@ -36,6 +36,13 @@ export const Sidebar = styled.aside`
   @media (max-width: ${breakpoints.tablet}) {
     max-width: 80%;
   }
+
+  .empty-text {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${colors.mainColor};
+    text-align: center;
+  }
 `
 
 export const ListItem = styled.li`

@@ -30,6 +30,10 @@ type PurchasePayload = {
   }
 }
 
+type PurchaseResponse = {
+  orderId: string
+}
+
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
@@ -42,7 +46,7 @@ const api = createApi({
     getRestaurantById: builder.query<Menu, number>({
       query: (id) => `restaurantes/${id}`
     }),
-    purchase: builder.mutation<any, PurchasePayload>({
+    purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
       query: (body) => ({
         url: '/checkout',
         method: 'POST',

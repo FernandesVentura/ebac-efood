@@ -17,7 +17,8 @@ import * as Yup from 'yup'
 import { usePurchaseMutation } from './services/api'
 
 function MainApp() {
-  const [purchase, { data: purchaseResult, isSuccess }] = usePurchaseMutation()
+  const [purchase, { data: purchaseResult, isSuccess, isLoading }] =
+    usePurchaseMutation()
   const dispatch = useDispatch()
 
   const { isOpen: isCheckoutOpen } = useSelector(
@@ -51,7 +52,7 @@ function MainApp() {
       description: Yup.string().required('O campo é obrigatório'),
       city: Yup.string().required('O campo é obrigatório'),
       zipCode: Yup.string().required('O campo é obrigatório'),
-      number: Yup.number()
+      number: Yup.string()
         .typeError('O número precisa ser válido')
         .required('O campo é obrigatório'),
       complement: Yup.string(),
