@@ -1,7 +1,7 @@
 import Product from '../Product'
+import Loader from '../Loader'
 import { Container, List } from './styles'
 import { useGetRestaurantsQuery } from '../../services/api'
-import { Menu } from '../../pages/Home'
 
 const ProductsList = () => {
   const { data: menus, isLoading, error } = useGetRestaurantsQuery()
@@ -16,7 +16,7 @@ const ProductsList = () => {
     return tags
   }
 
-  if (isLoading) return <p>Carregando restaurantes...</p>
+  if (isLoading) return <Loader></Loader>
   if (error || !menus) return <p>Erro ao carregar restaurantes</p>
 
   return (

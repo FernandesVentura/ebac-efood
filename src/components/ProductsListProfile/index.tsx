@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
 
+import Loader from '../Loader'
 import ProductProfile from '../ProductProfile'
 import { Container, List } from './styles'
 import ModalProfile from '../ModalProfile'
-import { Prato } from '../../pages/Home'
 import { useGetRestaurantByIdQuery } from '../../services/api'
 
 const ProductsListProfile = () => {
@@ -18,7 +18,7 @@ const ProductsListProfile = () => {
     error
   } = useGetRestaurantByIdQuery(Number(id))
 
-  if (isLoading) return <p>Carregando pratos...</p>
+  if (isLoading) return <Loader></Loader>
   if (error || !restaurant) return <p>Erro ao carregar restaurante</p>
 
   return (

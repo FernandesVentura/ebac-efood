@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { Menu } from '../pages/Home'
 
 type Product = {
   id: number
@@ -32,6 +31,7 @@ type PurchasePayload = {
 }
 
 const api = createApi({
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://ebac-fake-api.vercel.app/api/efood/'
   }),
@@ -44,7 +44,7 @@ const api = createApi({
     }),
     purchase: builder.mutation<any, PurchasePayload>({
       query: (body) => ({
-        url: 'checkout',
+        url: '/checkout',
         method: 'POST',
         body
       })

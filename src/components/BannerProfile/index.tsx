@@ -1,12 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { Image, Title, Text } from './styles'
 import { useGetRestaurantByIdQuery } from '../../services/api'
+import Loader from '../Loader'
 
 const BannerProfile = () => {
   const { id } = useParams<{ id: string }>()
   const { data: restaurant, isLoading } = useGetRestaurantByIdQuery(Number(id))
 
-  if (isLoading) return <p>Carregando o banner...</p>
+  if (isLoading) return <Loader />
   if (!restaurant) return <p>Erro ao carregar restaurante</p>
 
   return (

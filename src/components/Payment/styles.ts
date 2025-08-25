@@ -73,6 +73,10 @@ export const InputLine = styled.div`
     border: 1px solid ${colors.footerColor};
     background-color: ${colors.footerColor};
     margin-bottom: 8px;
+
+    &.input-error {
+      border: 3px solid #b71618;
+    }
   }
 
   #cvv {

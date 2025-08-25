@@ -14,7 +14,7 @@ const Payment = () => {
 
   const totalPrice = useSelector((state: RootState) => selectTotalPrice(state))
 
-  const { values, handleChange, handleBlur, errors, touched } =
+  const { values, handleChange, handleBlur, errors, touched, isValid } =
     useFormikContext<any>()
 
   const handleBackToCheckout = () => {
@@ -22,7 +22,7 @@ const Payment = () => {
     dispatch(openCheckout())
   }
 
-  const getErrorMessage = (fieldName: string): string => {
+  const getInputError = (fieldName: string) => {
     const error = errors[fieldName]
     if (touched[fieldName] && typeof error === 'string') {
       return error
@@ -45,7 +45,7 @@ const Payment = () => {
           <h3>Pagamento - Valor a pagar {formatPrice(totalPrice)} </h3>
           <ul>
             <InputLine>
-              <label htmlFor="cardName">Nome no cartão</label>
+              <label htmlFor="cardName">Nome no cartão (*)</label>
               <input
                 id="cardName"
                 type="text"
@@ -53,12 +53,12 @@ const Payment = () => {
                 value={values.cardName}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className={getInputError('cardName') ? 'input-error' : ''}
               />
-              <small>{getErrorMessage('cardName')}</small>
             </InputLine>
             <Row>
               <InputLine>
-                <label htmlFor="cardNumber">Número do cartao</label>
+                <label htmlFor="cardNumber">Número do cartao (*)</label>
                 <input
                   id="cardNumber"
                   type="text"
@@ -66,11 +66,11 @@ const Payment = () => {
                   value={values.cardNumber}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('cardNumber') ? 'input-error' : ''}
                 />
-                {getErrorMessage('cardNumber')}
               </InputLine>
               <InputLine>
-                <label htmlFor="cvv">CVV</label>
+                <label htmlFor="cvv">CVV (*)</label>
                 <input
                   id="cvv"
                   type="text"
@@ -78,13 +78,13 @@ const Payment = () => {
                   value={values.cvv}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('cvv') ? 'input-error' : ''}
                 />
-                {getErrorMessage('cvv')}
               </InputLine>
             </Row>
             <Row>
               <InputLine>
-                <label htmlFor="expiresMonth">Mês de vencimento</label>
+                <label htmlFor="expiresMonth">Mês de vencimento (*)</label>
                 <input
                   id="expiresMonth"
                   type="text"
@@ -92,11 +92,11 @@ const Payment = () => {
                   value={values.expiresMonth}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('expiresMonth') ? 'input-error' : ''}
                 />
-                {getErrorMessage('expiresMonth')}
               </InputLine>
               <InputLine>
-                <label htmlFor="expiresYear">Ano de vencimento</label>
+                <label htmlFor="expiresYear">Ano de vencimento (*)</label>
                 <input
                   id="expiresYear"
                   type="text"
@@ -104,14 +104,14 @@ const Payment = () => {
                   value={values.expiresYear}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('expiresYear') ? 'input-error' : ''}
                 />
-                {getErrorMessage('expiresYear')}
               </InputLine>
             </Row>
           </ul>
-          <Button className="btn-button" type="submit">
+          <button className="btn-button" type="submit">
             Finalizar o pagamento
-          </Button>
+          </button>
           <Button type="button" onClick={handleBackToCheckout}>
             Voltar para a edição de endereço
           </Button>

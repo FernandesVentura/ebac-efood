@@ -6,12 +6,13 @@ import ProductsListProfile from '../../components/ProductsListProfile'
 import Footer from '../../components/Footer'
 
 import { useGetRestaurantsQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 const Profiles = () => {
   const { id } = useParams<{ id: string }>()
   const { data: restaurants, isLoading, error } = useGetRestaurantsQuery()
 
-  if (isLoading) return <h3>Carregando...</h3>
+  if (isLoading) return <Loader />
   if (error || !restaurants) return <h3>Erro ao carregar restaurantes</h3>
 
   const restaurant = restaurants.find((r) => r.id === Number(id))

@@ -70,11 +70,15 @@ export const InputLine = styled.div`
 
   input {
     width: 100%;
-    padding: 8px;
-    border: 1px solid ${colors.footerColor};
+    padding: 6px;
+    border: 2px solid ${colors.footerColor};
     background-color: ${colors.footerColor};
 
     @media (max-width: ${breakpoints.desktop}) {
+    }
+
+    &.input-error {
+      border: 3px solid #b71618;
     }
   }
 `

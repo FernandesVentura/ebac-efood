@@ -9,7 +9,6 @@ import {
   Modal
 } from '../ModalProfile/styles'
 import closeIMG from '../../assets/images/closeBTN.png'
-import { Prato } from '../../pages/Home'
 
 type Props = {
   modalOpen: boolean

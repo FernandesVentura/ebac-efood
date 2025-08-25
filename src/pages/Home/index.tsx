@@ -3,6 +3,7 @@ import ProductsList from '../../components/ProductsList'
 import Footer from '../../components/Footer'
 
 import { useGetRestaurantsQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 export type Menu = {
   id: number
@@ -27,7 +28,7 @@ export type Prato = {
 const Home = () => {
   const { data: restaurants, isLoading, error } = useGetRestaurantsQuery()
 
-  if (isLoading) return <p>Carregando restaurantes...</p>
+  if (isLoading) return <Loader />
   if (error || !restaurants) return <p>Erro ao carregar restaurantes</p>
 
   return (

@@ -1,14 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { useFormikContext } from 'formik'
+
+import { CheckoutContainer, InputLine, Overlay, Sidebar, Row } from './styles'
+
+import { Details as Button } from '../ProductProfile/styles'
+
 import { RootState } from '../../store'
 import { open as openPayment } from '../../store/reducers/payment'
 import { close as closeCheckout } from '../../store/reducers/checkout'
 import { open as openCart } from '../../store/reducers/cart'
-import { CheckoutContainer, InputLine, Overlay, Sidebar, Row } from './styles'
-import { Details as Button } from '../ProductProfile/styles'
-import { useFormikContext } from 'formik'
 
 const CheckoutForm = () => {
   const { isOpen } = useSelector((state: RootState) => state.checkout)
+  const { items } = useSelector((state: RootState) => state.cart)
   const dispatch = useDispatch()
 
   const {
@@ -26,7 +31,7 @@ const CheckoutForm = () => {
     dispatch(openCart())
   }
 
-  const getErrorMessage = (fieldName: string): string => {
+  const getInputError = (fieldName: string) => {
     const error = errors[fieldName]
     if (touched[fieldName] && typeof error === 'string') {
       return error
@@ -37,7 +42,7 @@ const CheckoutForm = () => {
   const continueToPayment = async () => {
     const deliveryFields = [
       'receiver',
-      'descriprion',
+      'description',
       'city',
       'zipCode',
       'number'
@@ -58,6 +63,9 @@ const CheckoutForm = () => {
     }
   }
 
+  if (items.length === 0) {
+    return <Navigate to="/" />
+  }
   return (
     <>
       <CheckoutContainer className={isOpen ? 'is-open' : ''}>
@@ -66,7 +74,7 @@ const CheckoutForm = () => {
           <h3>Entrega</h3>
           <ul>
             <InputLine>
-              <label htmlFor="receiver">Quem irá receber</label>
+              <label htmlFor="receiver">Quem irá receber (*)</label>
               <input
                 id="receiver"
                 type="text"
@@ -74,11 +82,13 @@ const CheckoutForm = () => {
                 value={values.receiver}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className={getInputError('receiver') ? 'input-error' : ''}
               />
-              <small>{getErrorMessage('receiver')}</small>
             </InputLine>
             <InputLine>
-              <label htmlFor="description">Endereço</label>
+              <label htmlFor="description">
+                Endereço <span>(*)</span>
+              </label>
               <input
                 id="description"
                 type="text"
@@ -86,11 +96,13 @@ const CheckoutForm = () => {
                 value={values.description}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className={getInputError('description') ? 'input-error' : ''}
               />
-              <small>{getErrorMessage('description')}</small>
             </InputLine>
             <InputLine>
-              <label htmlFor="city">Cidade</label>
+              <label htmlFor="city">
+                Cidade <span>(*)</span>
+              </label>
               <input
                 id="city"
                 type="text"
@@ -98,12 +110,14 @@ const CheckoutForm = () => {
                 value={values.city}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className={getInputError('city') ? 'input-error' : ''}
               />
-              <small>{getErrorMessage('city')}</small>
             </InputLine>
             <Row>
               <InputLine>
-                <label htmlFor="zipCode">CEP</label>
+                <label htmlFor="zipCode">
+                  CEP <span>(*)</span>
+                </label>
                 <input
                   id="zipCode"
                   type="text"
@@ -111,11 +125,13 @@ const CheckoutForm = () => {
                   value={values.zipCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('zipCode') ? 'input-error' : ''}
                 />
-                <small>{getErrorMessage('zipCode')}</small>
               </InputLine>
               <InputLine>
-                <label htmlFor="number">Número</label>
+                <label htmlFor="number">
+                  Número <span>(*)</span>
+                </label>
                 <input
                   id="number"
                   type="text"
@@ -123,8 +139,8 @@ const CheckoutForm = () => {
                   value={values.number}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={getInputError('number') ? 'input-error' : ''}
                 />
-                <small>{getErrorMessage('number')}</small>
               </InputLine>
             </Row>
             <InputLine>
@@ -136,8 +152,8 @@ const CheckoutForm = () => {
                 value={values.complement}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className={getInputError('complement') ? 'input-error' : ''}
               />
-              <small>{getErrorMessage('complement')}</small>
             </InputLine>
           </ul>
           <Button
