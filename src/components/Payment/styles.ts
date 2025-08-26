@@ -57,6 +57,10 @@ export const Row = styled.div`
   InputLine {
     width: 100%;
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: block;
+  }
 `
 
 export const InputLine = styled.div`

@@ -142,7 +142,6 @@ const CheckoutForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={getInputError('number') ? 'input-error' : ''}
-                  mask="00 00000-0000"
                 />
               </InputLine>
             </Row>

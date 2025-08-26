@@ -1,25 +1,30 @@
 // MainApp.tsx
-import { BrowserRouter } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useFormik, FormikProvider } from 'formik'
+import * as Yup from 'yup'
+
+import { RootState } from './store'
 import { GlobalCss } from './styles'
 import Rotas from './routes'
+
 import Cart from './components/Cart'
 import CheckoutForm from './components/CheckoutForm'
 import Payment from './components/Payment'
 import Receipt from './components/Receipt'
-import { useFormik, FormikProvider } from 'formik'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
-import { RootState } from './store'
+
 import { close as closePayment } from './store/reducers/payment'
 import { open as openReceipt } from './store/reducers/receipt'
-import * as Yup from 'yup'
 import { usePurchaseMutation } from './services/api'
+import { clear } from './store/reducers/cart'
 
 function MainApp() {
   const [purchase, { data: purchaseResult, isSuccess, isLoading }] =
     usePurchaseMutation()
   const dispatch = useDispatch()
+  const items = useSelector((state: RootState) => state.cart.items)
 
   const { isOpen: isCheckoutOpen } = useSelector(
     (state: RootState) => state.checkout
@@ -45,6 +50,7 @@ function MainApp() {
       expiresMonth: '',
       expiresYear: ''
     },
+
     validationSchema: Yup.object({
       receiver: Yup.string()
         .min(5, 'O nome precisa ter pelo menos 5 caracteres')
@@ -70,7 +76,10 @@ function MainApp() {
     }),
     onSubmit: (values) => {
       purchase({
-        products: [{ id: 1, price: 100 }],
+        products: items.map((item) => ({
+          id: item.id,
+          price: item.preco
+        })),
         delivery: {
           receiver: values.receiver,
           address: {
@@ -100,6 +109,7 @@ function MainApp() {
     if (isSuccess && purchaseResult) {
       dispatch(closePayment())
       dispatch(openReceipt(purchaseResult.orderId))
+      dispatch(clear())
     }
   }, [isSuccess, purchaseResult, dispatch])
 

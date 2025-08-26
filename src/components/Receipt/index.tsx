@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { useNavigate } from 'react-router-dom'
+
+import { Overlay, ReceiptContainer, Row, Sidebar } from './styles'
+
+import { Details as Button } from '../ProductProfile/styles'
 
 import { close as closeReceipt } from '../../store/reducers/receipt'
-import { Overlay, ReceiptContainer, Row, Sidebar } from './styles'
-import { Details as Button } from '../ProductProfile/styles'
+import { RootState } from '../../store'
 
 const Receipt = () => {
   const { isOpen, orderId } = useSelector((state: RootState) => state.receipt)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleToFinish = () => {
     dispatch(closeReceipt())
+    navigate('/')
   }
 
   return (
