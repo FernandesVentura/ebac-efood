@@ -57,22 +57,28 @@ function MainApp() {
         .required('O campo é obrigatório'),
       description: Yup.string().required('O campo é obrigatório'),
       city: Yup.string().required('O campo é obrigatório'),
-      zipCode: Yup.string().required('O campo é obrigatório'),
+      zipCode: Yup.string()
+        .required('O campo é obrigatório')
+        .min(9, 'Insira um CEP válido'),
       number: Yup.string()
         .typeError('O número precisa ser válido')
         .required('O campo é obrigatório'),
       complement: Yup.string(),
       cardName: Yup.string().required('O campo é obrigatório'),
-      cardNumber: Yup.string().required('O campo é obrigatório'),
+      cardNumber: Yup.string()
+        .required('O campo é obrigatório')
+        .min(19, 'Insira um número de cartão válido'),
       cvv: Yup.string()
         .length(3, 'Código de segurança inválido')
         .required('O campo é obrigatório'),
-      expiresMonth: Yup.number()
+      expiresMonth: Yup.string()
         .typeError('Mês inválido')
-        .required('O campo é obrigatório'),
-      expiresYear: Yup.number()
+        .required('O campo é obrigatório')
+        .min(2, 'Insira um mês válido'),
+      expiresYear: Yup.string()
         .typeError('Ano inválido')
         .required('O campo é obrigatório')
+        .min(4, 'Insira um ano válido')
     }),
     onSubmit: (values) => {
       purchase({

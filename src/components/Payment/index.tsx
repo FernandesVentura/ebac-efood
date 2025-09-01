@@ -15,8 +15,9 @@ const Payment = () => {
 
   const totalPrice = useSelector((state: RootState) => selectTotalPrice(state))
 
-  const { values, handleChange, handleBlur, errors, touched, isValid } =
-    useFormikContext<any>()
+  const formik = useFormikContext<any>()
+  const { values, handleChange, handleBlur, errors, touched, setFieldTouched } =
+    formik
 
   const handleBackToCheckout = () => {
     dispatch(closePayment())
@@ -29,6 +30,29 @@ const Payment = () => {
       return error
     }
     return ''
+  }
+
+  const handleRealTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name } = e.target
+
+    handleChange(e)
+    setFieldTouched(name, true, false)
+  }
+
+  const handleIMaskChange = (fieldName: string) => (value: string) => {
+    const syntheticEvent = {
+      target: {
+        name: fieldName,
+        value: value
+      }
+    } as React.ChangeEvent<HTMLInputElement>
+
+    handleChange(syntheticEvent)
+    setFieldTouched(fieldName, true, false)
+
+    setTimeout(() => {
+      formik.validateField(fieldName)
+    }, 0)
   }
 
   const formatPrice = (price = 0) => {
@@ -52,7 +76,7 @@ const Payment = () => {
                 type="text"
                 name="cardName"
                 value={values.cardName}
-                onChange={handleChange}
+                onChange={handleRealTimeChange}
                 onBlur={handleBlur}
                 className={getInputError('cardName') ? 'input-error' : ''}
               />
@@ -65,7 +89,7 @@ const Payment = () => {
                   type="text"
                   name="cardNumber"
                   value={values.cardNumber}
-                  onChange={handleChange}
+                  onAccept={handleIMaskChange('cardNumber')}
                   onBlur={handleBlur}
                   className={getInputError('cardNumber') ? 'input-error' : ''}
                   mask="0000-0000-0000-0000"
@@ -78,7 +102,7 @@ const Payment = () => {
                   type="text"
                   name="cvv"
                   value={values.cvv}
-                  onChange={handleChange}
+                  onAccept={handleIMaskChange('cvv')}
                   onBlur={handleBlur}
                   className={getInputError('cvv') ? 'input-error' : ''}
                   mask="000"
@@ -93,7 +117,7 @@ const Payment = () => {
                   type="text"
                   name="expiresMonth"
                   value={values.expiresMonth}
-                  onChange={handleChange}
+                  onAccept={handleIMaskChange('expiresMonth')}
                   onBlur={handleBlur}
                   className={getInputError('expiresMonth') ? 'input-error' : ''}
                   mask="00"
@@ -106,7 +130,7 @@ const Payment = () => {
                   type="text"
                   name="expiresYear"
                   value={values.expiresYear}
-                  onChange={handleChange}
+                  onAccept={handleIMaskChange('expiresYear')}
                   onBlur={handleBlur}
                   className={getInputError('expiresYear') ? 'input-error' : ''}
                   mask="0000"

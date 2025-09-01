@@ -24,7 +24,9 @@ const CheckoutForm = () => {
     touched,
     errors,
     validateForm,
-    setTouched
+    setTouched,
+    setFieldTouched,
+    validateField
   } = useFormikContext<any>()
 
   const handleBackToCart = () => {
@@ -38,6 +40,29 @@ const CheckoutForm = () => {
       return error
     }
     return ''
+  }
+
+  const handleRealTimeChange = async (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target
+
+    handleChange(e)
+    setFieldTouched(name, true, false)
+    setTimeout(() => {
+      validateField(name)
+    }, 0)
+  }
+
+  const handleIMaskChange = (fieldName: string) => (value: string) => {
+    const syntheticEvent = {
+      target: {
+        name: fieldName,
+        value: value
+      }
+    } as React.ChangeEvent<HTMLInputElement>
+
+    handleRealTimeChange(syntheticEvent)
   }
 
   const continueToPayment = async () => {
@@ -175,3 +200,6 @@ const CheckoutForm = () => {
 }
 
 export default CheckoutForm
+function validateField(name: string) {
+  throw new Error('Function not implemented.')
+}
